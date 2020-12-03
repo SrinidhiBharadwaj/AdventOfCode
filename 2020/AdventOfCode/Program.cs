@@ -11,123 +11,53 @@ namespace AdventOfCode
     class ReportRepair
     {
 
-        private static List<int> yearList = new List<int>();
-        private static List<string> passwordsList = new List<string>();
-        private static List<string> treeLine = new List<string>();
+       
         
-
         static void Main(string[] args)
         {
+            Day1 day1Instance = new Day1(); 
+            Day2 day2Instance = new Day2();
+            Day3 day3Instance = new Day3();
 
-            using (var file = new StreamReader("C:\\Users\\sks\\Downloads\\AoC-Pob1.txt"))
-            {
-                var line = string.Empty;
+            /********************** Day - 1 **********************/
 
-                while ((line = file.ReadLine()) != null)
-                {
-                    //passwordsList.Add(line);
-                    //yearList.Add(Convert.ToInt32(line));
-                    treeLine.Add(line);
+            int productOfYears = 0;
+            bool firstPart = true;
+            /* Part 1 */
+            productOfYears = day1Instance.findProductof2020(firstPart);
 
-                }
-            }
-            long numTrees = findNumTrees(1, 1) * findNumTrees(3, 1) * findNumTrees(5, 1) * findNumTrees(7, 1) * findNumTrees(1, 2);
-           // int product = findProductof2020();
-           // int product = findTotalRightPasswords();
+            /* Part 2 */
+            firstPart = false;
+            productOfYears = day1Instance.findProductof2020(firstPart);
+
+            /* ------------------------------------------------------ */
+
+            /********************** Day - 2 **********************/
+
+            int totalNumPasswords = 0;
+            firstPart = true;
+            /* Part 1 */
+            totalNumPasswords = day2Instance.findTotalRightPasswords(firstPart);
+
+            /* Part 2 */
+            firstPart = false;
+            totalNumPasswords = day2Instance.findTotalRightPasswords(firstPart);
+
+            /* ------------------------------------------------------ */
+
+            /********************** Day-3 **********************/
+            long numTrees = 0;
+
+            /* Part-1 */
+            numTrees = day3Instance.findNumTrees(3, 1);
+
+            /* Part-2 */
+            numTrees = day3Instance.findNumTrees(1, 1) * day3Instance.findNumTrees(3, 1) 
+                            * day3Instance.findNumTrees(5, 1) * day3Instance.findNumTrees(7, 1) * day3Instance.findNumTrees(1, 2);
+
+            /* ------------------------------------------------------ */
+
         }
-        private static long findNumTrees(int right, int down)
-        {
-            long totalNumTrees = 0;
-            int downIndex = 0;
-            int carriageRetIdx = 0;
-            
-            while(downIndex < treeLine.Count - 1)
-            {
-                downIndex += down;
-                carriageRetIdx = (carriageRetIdx + right) % treeLine[downIndex - 1].Length;
-                string tree = treeLine[downIndex];
-                if(tree[carriageRetIdx] == '#')
-                {
-                    totalNumTrees++;
-                }
-
-            }
-            return totalNumTrees;
-        }
-        private static int findProductof2020()
-        {
-            int product = 0;
-            int refYear = 2020;
-
-            /* First part of question 1 */
-            //foreach(int year in yearList)
-            //{
-            //    int numtoSearch = refYear - year;
-            //    if(yearList.Any(x => x == numtoSearch))
-            //    {
-            //        product = yearList.FirstOrDefault(x => x == numtoSearch) * year;
-            //        break;
-            //    }
-            //}
-
-            /* Second part of question 1 */
-            for (int i = 0;  i < yearList.Count; i++)
-            {
-                int secondRef = yearList[i];
-                for(int j = i + 1; j < yearList.Count - i - 1; j++)
-                {
-                    int numToSearch = refYear - secondRef - yearList[j];
-                    if (yearList.Any(x => x == numToSearch))
-                    {
-                        product = numToSearch * secondRef * yearList[j];
-                        break;
-                    }
-                }
-            }
-
-
-
-            return product;
-        }
-        private static int findTotalRightPasswords()
-        {
-            int totalCorrectPasswords = 0;
-            foreach (string password in passwordsList)
-            {
-                string minMax = password.Split(' ')[0];
-                int minOccurrence = Int32.Parse(minMax.Split('-')[0]);
-                int maxOccurrence = Int32.Parse(minMax.Split('-')[1]);
-                
-                char refLetter = (password.Split(' ')[1])[0];
-                string pass = password.Split(':')[1].Replace(" ", "");
-                
-                /* Second part of question 2 */
-                if (pass.Length >= maxOccurrence)
-                {
-                    if (pass[minOccurrence - 1] == refLetter ^ pass[maxOccurrence - 1] == refLetter)
-                    {
-                        totalCorrectPasswords++;
-                    }
-                }
-
-                /* First part of question 2 */
-                //foreach (char letter in pass)
-                //{
-                //    if (letter == refLetter)
-                //    {
-                //        count++;
-                //    }
-                //}
-                //if (count >= minOccurrence && count <= maxOccurrence)
-                //{
-                //    totalCorrectPasswords++;
-                //}
-
-            }
-
-            return totalCorrectPasswords;
-        }
-
-
+        
     }
 }
