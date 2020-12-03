@@ -13,8 +13,12 @@ namespace AdventOfCode
 
         private static List<int> yearList = new List<int>();
         private static List<string> passwordsList = new List<string>();
+        private static List<string> treeLine = new List<string>();
+        
+
         static void Main(string[] args)
         {
+
             using (var file = new StreamReader("C:\\Users\\sks\\Downloads\\AoC-Pob1.txt"))
             {
                 var line = string.Empty;
@@ -22,13 +26,34 @@ namespace AdventOfCode
                 while ((line = file.ReadLine()) != null)
                 {
                     //passwordsList.Add(line);
-                    yearList.Add(Convert.ToInt32(line));
+                    //yearList.Add(Convert.ToInt32(line));
+                    treeLine.Add(line);
+
                 }
             }
-            int product = findProductof2020();
+            long numTrees = findNumTrees(1, 1) * findNumTrees(3, 1) * findNumTrees(5, 1) * findNumTrees(7, 1) * findNumTrees(1, 2);
+           // int product = findProductof2020();
            // int product = findTotalRightPasswords();
         }
+        private static long findNumTrees(int right, int down)
+        {
+            long totalNumTrees = 0;
+            int downIndex = 0;
+            int carriageRetIdx = 0;
+            
+            while(downIndex < treeLine.Count - 1)
+            {
+                downIndex += down;
+                carriageRetIdx = (carriageRetIdx + right) % treeLine[downIndex - 1].Length;
+                string tree = treeLine[downIndex];
+                if(tree[carriageRetIdx] == '#')
+                {
+                    totalNumTrees++;
+                }
 
+            }
+            return totalNumTrees;
+        }
         private static int findProductof2020()
         {
             int product = 0;
@@ -102,5 +127,7 @@ namespace AdventOfCode
 
             return totalCorrectPasswords;
         }
+
+
     }
 }
