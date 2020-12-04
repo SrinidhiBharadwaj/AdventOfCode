@@ -18,6 +18,7 @@ namespace AdventOfCode
             Day1 day1Instance = new Day1(); 
             Day2 day2Instance = new Day2();
             Day3 day3Instance = new Day3();
+            Day4 day4Instance = new Day4();
 
             /********************** Day - 1 **********************/
 
@@ -57,7 +58,21 @@ namespace AdventOfCode
 
             /* ------------------------------------------------------ */
 
+            /********************** Day-4 **********************/
+            int numValidPassports = 0;
+            int numOfDataValid = 0;
+            
+            /* Part-1 */
+            firstPart = true;
+            numValidPassports = day4Instance.findTotalValidPassports(firstPart);
+
+            /* Part-2 */
+            firstPart = false;
+            numOfDataValid = day4Instance.findTotalValidPassports(firstPart);
+
+            /* ------------------------------------------------------ */
+
         }
-        
+
     }
 }
