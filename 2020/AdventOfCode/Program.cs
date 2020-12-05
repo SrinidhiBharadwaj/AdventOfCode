@@ -19,6 +19,7 @@ namespace AdventOfCode
             Day2 day2Instance = new Day2();
             Day3 day3Instance = new Day3();
             Day4 day4Instance = new Day4();
+            Day5 day5Instance = new Day5();
 
             /********************** Day - 1 **********************/
 
@@ -69,6 +70,18 @@ namespace AdventOfCode
             /* Part-2 */
             firstPart = false;
             numOfDataValid = day4Instance.findTotalValidPassports(firstPart);
+
+            /* ------------------------------------------------------ */
+
+            /********************** Day-5 **********************/
+            int highestSeatId = 0;
+            int mySeat = 0;
+
+            /* Part-1 */
+            highestSeatId = day5Instance.checkHighestID();
+
+            /* Part-2 */
+            mySeat = day5Instance.checkMySeat();
 
             /* ------------------------------------------------------ */
 

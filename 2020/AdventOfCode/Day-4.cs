@@ -30,7 +30,6 @@ namespace AdventOfCode
                     {
                         passPortInputs.Add(line);
                     }
-                   
                 }
             }
 
