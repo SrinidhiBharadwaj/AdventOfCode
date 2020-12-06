@@ -20,6 +20,7 @@ namespace AdventOfCode
             Day3 day3Instance = new Day3();
             Day4 day4Instance = new Day4();
             Day5 day5Instance = new Day5();
+            Day6 day6Instance = new Day6();
 
             /********************** Day - 1 **********************/
 
@@ -84,6 +85,21 @@ namespace AdventOfCode
             mySeat = day5Instance.checkMySeat();
 
             /* ------------------------------------------------------ */
+
+            /********************** Day-5 **********************/
+            int numOfAnswered = 0;
+            int numOfQuesAllAnswered = 0;
+
+            /* Part-1 */
+            firstPart = true;
+            numOfAnswered = day6Instance.checkSumOfCounts(firstPart);
+
+            /* Part-2 */
+            firstPart = false;
+            numOfQuesAllAnswered = day6Instance.checkSumOfCounts(firstPart);
+
+            /* ------------------------------------------------------ */
+
 
         }
 
